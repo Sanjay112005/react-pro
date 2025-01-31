@@ -1,0 +1,52 @@
+.about-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.6;
+  }
+  
+  .about-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .about-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .about-header p {
+    color: #555;
+    font-size: 1.2rem;
+  }
+  
+  .about-section {
+    margin-bottom: 20px;
+  }
+  
+  .about-section h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .about-section p, .about-section ul {
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  .about-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .about-section a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .about-section a:hover {
+    text-decoration: underline;
+  }
+  

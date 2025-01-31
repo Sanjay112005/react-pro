@@ -1,0 +1,78 @@
+.home-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .hero-section {
+    text-align: center;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    padding: 50px 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .shop-now-btn {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .shop-now-btn:hover {
+    background-color: #e64a19;
+  }
+  
+  .categories {
+    text-align: center;
+  }
+  
+  .categories h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .category-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .category-card p {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  

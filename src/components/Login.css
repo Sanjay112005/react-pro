@@ -1,0 +1,31 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa; /* Light background */
+    padding: 20px;
+  }
+  
+  .login-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Restrict width */
+    width: 100%; /* Ensure responsiveness */
+  }
+  
+  .login-form .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+  }
+  
+  .login-form .form-label {
+    font-weight: 600;
+  }
+  
+  button {
+    border-radius: 5px;
+  }
+  
