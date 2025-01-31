@@ -1,40 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Dog } from '../utils/Api';
+import Toast from 'react-hot-toast';
+
+/// why the ...credentials because to keep the previous values of credentials 
+/// still resend verification is not complete 
 
 
+function Login({isAuthenticated}) {
 
+  const[credentials,setCredentials] = useState({email:'',password:''})
+  const[loginError,setLoginError] = useState(null)
+  const[showresendverfication,setShowResendVerification] = useState(false)
+   const navigate =  useNavigate()
+  
+  const handle = async(e) =>{
+       e.preventDefault()
+      try{
+       const repo = await Dog.login(credentials)
+       const data = await repo.json()
 
-function Login() {
+       if(repo.ok){
+        isAuthenticated(true)
+        Toast.success(data.message || "Logged in successfully")
+        navigate("/products")
+       }
+       else{
+        Toast.error(data.error || 'login failed')
+
+        if(data.error && data.error.includes('account not verified ')){
+          setLoginError('Account not activated')
+
+        }
+       }
+
+      }
+      catch(error){
+      Toast.error("Error logging in ")
+      console.log('login error',error)
+      }
+
+  }
+  
   return (
     <div className="login-container">
-      <Form className="login-form">
+      <Form className="login-form"  onSubmit={handle}>
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
             Email
           </Form.Label>
           <Col sm={10}>
-            <Form.Control type="email" placeholder="Enter your email" />
+            <Form.Control type="email" placeholder="Enter your email"  value={credentials.email} onChange={(e)=>setCredentials({...credentials, email : e.target.value})}/>
           </Col>
         </Form.Group>
+      
 
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
           <Form.Label column sm={2}>
             Password
           </Form.Label>
           <Col sm={10}>
-            <Form.Control type="password" placeholder="Enter your password" />
+            <Form.Control type="password" placeholder="Enter your password" value={credentials.password} onChange={(e) => setCredentials({...credentials , password:e.target.value})} />
           </Col>
         </Form.Group>
 
-        <Form.Group as={Row} className="mb-3" controlId="formHorizontalCheck">
-          <Col sm={{ span: 10, offset: 2 }}>
-            <Form.Check label="Remember me" />
-          </Col>
-        </Form.Group>
 
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 2 }}>
