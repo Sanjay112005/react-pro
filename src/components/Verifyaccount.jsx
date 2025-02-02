@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Dog } from '../utils/Api'
-import { toast } from 'react-toastify'
+import Toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -16,11 +16,11 @@ function Verifyaccount() {
    if(tokens) {
     Dog.verifyAccount(tokens)
     .then((response) =>{
-        toast.success(response.detail || "verification completed successfully ")
+        Toast.success(response.detail || "verification completed successfully ")
           setStatus("Success")
 })
 .catch((error)=>{
-  toast.error(error.message || 'verification failed')
+  Toast.error(error.message || 'verification failed')
   setStatus('error')
 })
    }

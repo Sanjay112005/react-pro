@@ -11,7 +11,7 @@ import Toast from 'react-hot-toast';
 /// still resend verification is not complete 
 
 
-function Login({isAuthenticated}) {
+function Login({setIsAuthenticated}) {
 
   const[credentials,setCredentials] = useState({email:'',password:''})
   const[loginError,setLoginError] = useState(null)
@@ -25,7 +25,7 @@ function Login({isAuthenticated}) {
        const data = await repo.json()
 
        if(repo.ok){
-        isAuthenticated(true)
+        setIsAuthenticated(true)
         Toast.success(data.message || "Logged in successfully")
         navigate("/products")
        }

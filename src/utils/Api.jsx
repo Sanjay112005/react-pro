@@ -48,6 +48,12 @@ export const Dog ={
                body:JSON.stringify(data),
                credentials:"include",
             }),
+
+         logout : ()=> 
+            fetch(`${BASE_URL}/admin_console/logout/`,{
+             method:"GET",
+             credentials:"include"
+            }),
          
          
 
