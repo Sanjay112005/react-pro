@@ -1,0 +1,100 @@
+/* General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    color: #2c3e50;
+  }
+  
+  /* Product List Grid */
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Product Card */
+  .product-list div {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  /* Hover Effect - Slight Lift */
+  .product-list div:hover {
+    /* transform: scale(1.05); */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Click Effect - Jump */
+  .product-list div:active {
+    /* transform: translateY(-8px); */
+    transition: transform 0.1s;
+  }
+  
+  /* Image Styling */
+  .product-list img {
+    width: 80%;
+    max-height: 200px;
+    /* object-fit: cover; */
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Image Hover Zoom */
+  .product-list div:hover img {
+    transform: scale(1.1);
+  }
+  
+  /* Product Title */
+  .product-list h3 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin: 10px 0;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  /* Change Title Color on Hover */
+  .product-list div:hover h3 {
+    color: #e74c3c;
+  }
+  
+  /* Product Model */
+  .model {
+    font-size: 1rem;
+    color: #7f8c8d;
+    font-weight: bold;
+  }
+  
+  /* Description */
+  .desc {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  /* Price */
+  .price {
+    font-size: 1.2rem;
+    color: #27ae60;
+    font-weight: bold;
+  }
+  
+  /* Animated Button */
+ 
+  

@@ -2,101 +2,94 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Commet } from 'react-loading-indicators';
 import Toast from 'react-hot-toast'; 
-import './styles.css';
+import './products.css';
 import Star from './Star';
+import { Dog } from '../utils/Api';
+import Addtocart from './addtocart';
 
 
-const Products = ({ addToCart }) => {
+const Products = () => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [message, setMessage] = useState('');
   const [load, setLoad] = useState(true);
   const [errors, setErrors] = useState(null);
-  const [searchParams] = useSearchParams();
-  const queryTerm = searchParams.get('q');
-  // Added navigate
+  const[searchParams] = useSearchParams()
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('https://fakestoreapi.com/products');
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
+ const searchQuery =  searchParams.get('q')|| ''
 
-        const data = await response.json();
-        setProducts(data);
-        setFilteredProducts(data);
-        setLoad(false);
-      } catch (err) {
-        setErrors(err.message);
-        setLoad(false);
+  const fetchProduct = async (query = '') => {
+    setMessage('');
+    setLoad(true);
+    setErrors(null);
+  
+
+    try {
+      const repo = await Dog.getProducts(query);
+  
+      if (!repo.ok) {
+        throw new Error(`Error fetching products: ${repo.status}`);
       }
-    };
-
-    fetchProducts();
-  }, []);
+  
+      const wait = await repo.json();
+      console.log('API Response:', wait); // Debugging
+  
+      // Fix: Access 'Products' instead of 'products'
+      if (wait && Array.isArray(wait.Products)) {
+        setProducts([...wait.Products]); // Ensure state updates properly
+      } else {
+        setMessage('No products found');
+        setProducts([]);
+      }
+    } catch (err) {
+      console.error("The product was not fetched:", err);
+      setErrors(err.message || "Something went wrong.");
+    } finally {
+      setLoad(false);
+    }
+  };
+  
 
   useEffect(() => {
-    if (queryTerm) {
-      const filtered = products.filter((product) =>
-        product.title.toLowerCase().includes(queryTerm.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-    } else {
-      setFilteredProducts(products);
-    }
-  }, [queryTerm, products]);
-
-  const handleAddToCart = (product) => {
-    addToCart(product);
-    Toast.success(`${product.title} added to cart!`);
-    
-  };
+    fetchProduct();
+  }, []);
+  
+  useEffect(()=>{
+   fetchProduct(searchQuery)
+  },[searchQuery])
+  useEffect(() => {
+    console.log("Updated products state:", products);
+  }, [products]); // This will log whenever products updates
+  
 
   if (load) {
     return <Commet color="#32cd32" size="medium" text="Loading..." />;
   }
 
   if (errors) {
-    return <p>Error: {errors}</p>;
+    return <p className="error-message">{errors}</p>;
   }
 
   return (
-    <div>
-      <h1>Product List</h1>
-      <h5 className="text-danger py-2 border-bottom">
-        {filteredProducts.length === 0
-          ? `No results found for "${queryTerm}"`
-          : queryTerm
-          ? `Results for "${queryTerm}"`
-          : 'All Products'}
-      </h5>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {filteredProducts.map((product) => (
-          <li key={product.id} style={{ marginBottom: '20px' }}>
-            <img src={product.image} alt={product.title} width="100" />
-            <h2>{product.title}</h2>
-            <p>{product.description}</p>
-            <p>Category: {product.category}</p>
-            <p>Price: ${product.price}</p>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span>Rating:</span> <Star rating={product.rating.rate} />
+ <div>
+      <h1>Products</h1>
+      {message && <p className="message">{message}</p>}
+      <div className="product-list">
+        {products.length > 0 ? (
+          products.map((product) => (
+            <div key={product.productID}>
+              <img src={product.imageUrl} alt={product.model} />
+              <h3>{product.product}</h3>
+              <p className="model">{product.model}</p>
+              <p className="desc">{product.description}</p>
+              <p className="price">Price: ₹{product.price}</p>
+              <Addtocart product_id={product.productID}/>
             </div>
-            <button
-              onClick={() => handleAddToCart(product)}
-              style={{
-                color: 'white',
-                backgroundColor: 'red',
-                border: 'none',
-                borderRadius: '5px',
-              }}
-            >
-              Add to Cart
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+          ))
+        ) : (
+          <p>No products available.</p>
+        )}
+      </div>
+      </div>
   );
 };
 

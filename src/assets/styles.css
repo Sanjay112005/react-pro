@@ -1,0 +1,41 @@
+.add-to-cart-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between input and button */
+    justify-content: center; /* Centering content */
+    margin-top: 10px;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.quantity-input:focus {
+    border-color: red;
+}
+
+.add-to-cart-button {
+    color: white;
+    background-color: red;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+}
+
+.add-to-cart-button:active {
+    transform: scale(0.95);
+}

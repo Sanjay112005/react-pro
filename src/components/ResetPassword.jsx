@@ -20,28 +20,39 @@ function ResetPassword() {
 
 
 
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    
+    if (newpassword !== confirmPassword) {
+      Toast.error("Passwords do not match!");
+      return;
+    }
+  
+    if (!token) {
+      Toast.error("Invalid or expired reset link.");
+      return;
+    }
+  
+    try {
+      const response = await Dog.resetPassword(token, { newpassword });
+      console.log("Response from API:", response);
+ 
 
-  const handlesubmit = async(e) =>{
-    e.preventDefault()
-    if(newpassword !== confirmPassword){
-        Toast.error("the password typed thus not match ")
-        return
+  
+      if (response.status === 200 || response.success) {
+        Toast.success("Password reset successfully");
+        navi("/Login");
+      } else {
+        Toast.error(response.message || "Failed to reset.");
+      }
+    } catch (error) {
+      console.error("Error resetting password:", error);
+      Toast.error("Something went wrong. Please try again.");
     }
-    try{
-   const resets =  Dog.resetPassword(token, {newpassword} )
-    if(resets.ok){
-      Toast.success('password reset successfully ')
-      navi('/Login')
-    }
-    else{
-        Toast.error("failed to reset ")
-    }
-    }
-    catch(error){
-     Toast.error("failed")
-    }
-
-}
+    console.log("Token:", token);
+    console.log("New Password:", newpassword);
+  };
+  
   
   return (
     <div>

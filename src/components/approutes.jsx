@@ -24,33 +24,25 @@ useEffect(()=>{
 
   const [cartItems, setCartItems] = useState([]);
 
-  // Function to add item to the cart
-  const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
-  };
 
-  // Function to remove item from the cart
-  const removeFromCart = (itemId) => {
-    setCartItems(cartItems.filter(item => item.id !== itemId));  // Filter out the item with the given id
-  };
 
   return (
     <Routes>
       <Route path="/Home" element={<Home setIsAuthenticated={setIsAuthenticated}/>} />
       <Route path="/About" element={<About setIsAuthenticated={setIsAuthenticated} />} />
       <Route
-        path="/products"
-        element={<Products addToCart={addToCart} setIsAuthenticated={setIsAuthenticated} />} // Pass addToCart to Products
+        path="/Products"
+        element={<Products  setIsAuthenticated={setIsAuthenticated} />}
       />
       <Route path="/Login" element={<Login setIsAuthenticated={setIsAuthenticated}/>} />
       <Route path="/Register" element={<Register />} />
-      <Route path='Resetpassword' element={<ResetPassword />} />
+      <Route path='reset-password' element={<ResetPassword/>} />
       <Route path='forgotpassword' element={<ForgotPassword />} />
       <Route path='verify-account' element={<Verifyaccount/>}/>
    
       <Route
         path="/cart"
-        element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} setIsAuthenticated={setIsAuthenticated}/>} // Pass removeFromCart to Cart
+        element={<Cart />} 
       />
     </Routes>
   );

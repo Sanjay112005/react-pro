@@ -28,7 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <Toaster
-        position="top-center"
+        // position="top-center"
         reverseOrder={false}
         toastOptions={{
           success: {

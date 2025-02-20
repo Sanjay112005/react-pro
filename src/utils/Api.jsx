@@ -33,11 +33,11 @@ export const Dog ={
             }),
 
          resetPassword : (token,data) =>
-            fetch(`${BASE_URL}/admin_console/reset-password/?token=${token}`,{
-              method:"POST",
-              headers:{'content-Type':'application/json'},
-              body:JSON.stringify(data) ,
-              credentials:"include",
+            fetch(`${BASE_URL}/admin_console/reset-password/?token=${token}`, {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify(data),
+               credentials: 'include',
 
             }),
 
@@ -55,6 +55,28 @@ export const Dog ={
              credentials:"include"
             }),
          
-         
+         getProducts : (query = '') =>
+            fetch(`${BASE_URL}/product/get/${query ? `?q=${encodeURIComponent(query)}` : ''}`, {
+               method:'GET',
+               credentials: 'include',
+            }),
 
+            addToCart: (productId, quantity = 1) =>
+               fetch(`${BASE_URL}/cart_mgmt/add/`, {
+                   method: 'POST',
+                   headers: { 'Content-Type': 'application/json' },
+                   body: JSON.stringify({ product_id: productId, quantity }), // Send both product_id and quantity
+                   credentials: 'include'
+               }),
+            getCart :()=>
+               fetch(`${BASE_URL}/cart_mgmt/view/`, {
+                  method:"GET",
+                  credentials:"include",
+               }),
+
+            deleteCartItem :(itemId) =>
+               fetch(`${BASE_URL}/cart_mgmt/remove/${itemId}/`, {
+                  method: 'DELETE',
+                  credentials: 'include',
+              }),  
 } 
