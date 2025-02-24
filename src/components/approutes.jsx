@@ -9,6 +9,8 @@ import Cart from './Cart';  // Import Cart component
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import Verifyaccount from './Verifyaccount';
+import Checkout from './Checkout';
+import UserProfile from './UserProfile';
 
 const Approutes = () => {
   // State to hold cart items
@@ -44,6 +46,8 @@ useEffect(()=>{
         path="/cart"
         element={<Cart />} 
       />
+      <Route path='/checkout' element={<Checkout />} />
+      <Route path='/Profile' element={<UserProfile/>}/>
     </Routes>
   );
 };

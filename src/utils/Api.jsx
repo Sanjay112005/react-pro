@@ -79,4 +79,39 @@ export const Dog ={
                   method: 'DELETE',
                   credentials: 'include',
               }),  
-} 
+
+              checkout: () =>
+               fetch(`${BASE_URL}/cart_mgmt/checkout/`, {
+                   method: 'POST',
+                   credentials: 'include', // Include cookies in the request
+               }).then((response) => response.json()),
+               
+           makePayment: (orderId) =>
+               fetch(`${BASE_URL}/cart_mgmt/payment/${orderId}/`, {
+                   method: 'POST',
+                   credentials: 'include', // Include cookies in the request
+               }).then((response) => response.json()),
+               createProfile: (data) =>
+                  fetch(`${BASE_URL}/user_mgmt/profile/create/`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(data),
+                      credentials: 'include',
+                  }),
+              
+              updateProfile: (data) =>
+                  fetch(`${BASE_URL}/user_mgmt/profile/update/`, {
+                      method: 'PUT',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(data),
+                      credentials: 'include',
+                  }),
+              
+              getProfile: () =>
+                  fetch(`${BASE_URL}/user_mgmt/profile/`, {
+                      method: 'GET',
+                      credentials: 'include',
+                  }),
+              
+
+            }
