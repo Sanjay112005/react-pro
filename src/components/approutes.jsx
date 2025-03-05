@@ -12,6 +12,9 @@ import Verifyaccount from './Verifyaccount';
 import Checkout from './Checkout';
 import UserProfile from './UserProfile';
 import OrderHistory from './OrderHistory';
+import ResendVerification from './ResendVerification';
+import ReactivateVerification from './ReactivateVerification';
+import ReactivateAccount from './ReactivateAccount';
 
 const Approutes = () => {
   // State to hold cart items
