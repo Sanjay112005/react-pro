@@ -74,20 +74,20 @@ const Products = () => {
       <h1>Products</h1>
       {message && <p className="message">{message}</p>}
       <div className="product-list">
-        {products.length > 0 ? (
-          products.map((product) => (
-            <div key={product.productID}>
-              <img src={product.imageUrl} alt={product.model} />
-              <h3>{product.product}</h3>
-              <p className="model">{product.model}</p>
-              <p className="desc">{product.description}</p>
-              <p className="price">Price: ₹{product.price}</p>
-              <Addtocart product_id={product.productID}/>
-            </div>
-          ))
-        ) : (
-          <p>No products available.</p>
-        )}
+  {products.length > 0 ? (
+    products.map((product) => (
+      <div key={product.productID} className="product-card">
+        <img src={product.imageUrl} alt={product.model} />
+        <h3 className="product-title">{product.product}</h3>
+        <p className="product-model">{product.model}</p>
+        <p className="product-desc">{product.description}</p>
+        <p className="product-price">Price: ₹{product.price}</p>
+        <Addtocart product_id={product.productID} />
+      </div>
+    ))
+  ) : (
+    <p>No products available.</p>
+  )}
       </div>
       </div>
   );

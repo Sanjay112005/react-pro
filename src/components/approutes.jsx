@@ -11,6 +11,7 @@ import ResetPassword from './ResetPassword';
 import Verifyaccount from './Verifyaccount';
 import Checkout from './Checkout';
 import UserProfile from './UserProfile';
+import OrderHistory from './OrderHistory';
 
 const Approutes = () => {
   // State to hold cart items
@@ -47,7 +48,11 @@ useEffect(()=>{
         element={<Cart />} 
       />
       <Route path='/checkout' element={<Checkout />} />
-      <Route path='/Profile' element={<UserProfile/>}/>
+      <Route path='/Profile' element={<UserProfile setIsAuthenticated={setIsAuthenticated} />}/>
+      <Route path='/OrderHistory' element = {<OrderHistory setIsAuthenticated={setIsAuthenticated} />}  />
+      <Route path="/resend-verification" element={<ResendVerification />} />
+      <Route path="/reactivate-verification" element={<ReactivateVerification />} />
+      <Route path="/activate-account" element={<ReactivateAccount />} />
     </Routes>
   );
 };

@@ -1,0 +1,130 @@
+/* Container Styling */
+.order-history-container {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Header */
+.order-history-container h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Grid Layout for Orders */
+.order-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* 3D Order Cards */
+.order-item {
+    background: linear-gradient(to right, #ffffff, #f4f4f4);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Hover Effect: 3D Lift */
+.order-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Order Header */
+.order-item h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Order Details */
+.order-item p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Order Items List */
+.order-item ul {
+    padding: 0;
+    list-style: none;
+    margin-top: 10px;
+}
+
+.order-item ul li {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+/* Subtle Hover Effect for Items */
+.order-item ul li:hover {
+    background: rgba(0, 0, 0, 0.08);
+    transform: scale(1.02);
+}
+
+/* Icon Before Items */
+.order-item ul li::before {
+    content: "📦";
+    margin-right: 10px;
+}
+
+/* Payment Status */
+.status-paid {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Loading & No Orders */
+.loading-message,
+.no-orders-message {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .order-history-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .order-item h3 {
+        font-size: 20px;
+    }
+
+    .order-item p,
+    .order-item ul li {
+        font-size: 14px;
+    }
+}

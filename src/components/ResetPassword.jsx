@@ -12,7 +12,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 // verifies the request and identifies the user correctly it will update the password this is how it works 
 
 function ResetPassword() {
-  const[newpassword,setNewpassword]= useState('')
+  const[new_password,setNewpassword]= useState('')
   const[confirmPassword,setConfirmPassword] = useState('');
   const [searchParams] = useSearchParams()
   const navi = useNavigate();
@@ -23,7 +23,7 @@ function ResetPassword() {
   const handlesubmit = async (e) => {
     e.preventDefault();
     
-    if (newpassword !== confirmPassword) {
+    if (new_password !== confirmPassword) {
       Toast.error("Passwords do not match!");
       return;
     }
@@ -34,7 +34,7 @@ function ResetPassword() {
     }
   
     try {
-      const response = await Dog.resetPassword(token, { newpassword });
+      const response = await Dog.resetPassword(token, { new_password });
       console.log("Response from API:", response);
  
 
@@ -50,7 +50,7 @@ function ResetPassword() {
       Toast.error("Something went wrong. Please try again.");
     }
     console.log("Token:", token);
-    console.log("New Password:", newpassword);
+    console.log("New Password:", new_password);
   };
   
   
@@ -58,7 +58,7 @@ function ResetPassword() {
     <div>
         <form onSubmit={handlesubmit}>
             <h2>Reset Password</h2>
-            <input type="password" value={newpassword} onChange={(e)=>setNewpassword(e.target.value)} required />
+            <input type="password" value={new_password} onChange={(e)=>setNewpassword(e.target.value)} required />
            <input type="password"  value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} />
            <button type='submit'>Reset Password</button>
         </form>

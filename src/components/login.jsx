@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import { Link, useNavigate } from 'react-router-dom';
 import { Dog } from '../utils/Api';
 import Toast from 'react-hot-toast';
+import ResendVerification from './ResendVerification';
 
 /// why the ...credentials because to keep the previous values of credentials 
 /// still resend verification is not complete 
@@ -15,9 +16,10 @@ function Login({setIsAuthenticated}) {
 
   const[credentials,setCredentials] = useState({email:'',password:''})
   const[loginError,setLoginError] = useState(null)
-  const[showresendverfication,setShowResendVerification] = useState(false)
+  const[showResendVerfication,setShowResendVerification] = useState(false)
    const navigate =  useNavigate()
   
+   
   const handle = async(e) =>{
        e.preventDefault()
       try{
@@ -95,6 +97,18 @@ function Login({setIsAuthenticated}) {
             </Link></Button>
           </p>
         </div>
+        
+        
+       
+            {loginError === 'account not activated ' && (
+             <button onClick={() => setShowResendVerification(!showResendVerification)}>
+
+             {showResendVerfication ? 'Hide' : 'Resend Verification'}
+             </button>
+             )}
+             {showResendVerfication && <ResendVerification />}
+        
+     
       
 
 

@@ -23,6 +23,18 @@ export const Dog ={
                if(!res.ok) throw new Error("verfication ffalied")
                return res.json()
             }),
+
+            resendVerification: (data) =>
+               fetch(`${BASE_URL}/admin_console/resend-verification/`, {
+                   method: 'POST',
+                   headers: { 'Content-Type': 'application/json' },
+                   body: JSON.stringify(data),
+                   credentials: 'include',
+               }).then((res) => {
+                   if (!res.ok) throw new Error('Failed to send verification email');
+                   return res.json();
+               }),
+               
            
          forgotpassword : (email) =>
             fetch(`${BASE_URL}/admin_console/forgotpassword/`,{
@@ -91,6 +103,13 @@ export const Dog ={
                    method: 'POST',
                    credentials: 'include', // Include cookies in the request
                }).then((response) => response.json()),
+             
+             OrderHistory: ()=>
+                  fetch(`${BASE_URL}/cart_mgmt/order-history/`, {
+                       method:"POST",
+                       credentials:"include",
+                  }),
+
                createProfile: (data) =>
                   fetch(`${BASE_URL}/user_mgmt/profile/create/`, {
                       method: 'POST',
@@ -112,6 +131,28 @@ export const Dog ={
                       method: 'GET',
                       credentials: 'include',
                   }),
+               
+                  deactivateAccount: () =>
+                     fetch(`${BASE_URL}/user_mgmt/profile/deactivate/`, {
+                         method: 'PUT',
+                         credentials: 'include',
+                     }),
+                 
+                     reactivateVerification: (data) =>
+                         fetch(`${BASE_URL}/admin_console/reactivate-verification/`, {
+                             method: 'POST',
+                             headers: { 'Content-Type': 'application/json' },
+                             body: JSON.stringify(data),
+                             credentials: 'include',
+                         }),
+                     
+                     reactivateAccount: (token) =>
+                         fetch(`${BASE_URL}/admin_console/activate-account/?token=${token}`, {
+                             method: 'POST',
+                             credentials: 'include',
+                         }),
               
+           
+
 
             }
